@@ -1,15 +1,30 @@
-<h1>Page for <%= @restaurant.name %></h1>
-<h3>Category:  <%= @restaurant.category.capitalize %></h3>
-<h3>Address:  <%= @restaurant.address %></h3>
-<h3>Phone Number: <%= @restaurant.phone_number %></h3>
+<h1><%= @restaurant.name %></h1>
+<div class="card-trip">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @restaurant.address %></h2>
+      <p>Category: <%= @restaurant.category.capitalize %></p>
+    </div>
+    <p class="card-trip-pricing"> <%= @restaurant.phone_number %></p>
+  </div>
+</div>
 
-<ul class="list-group">
-<% @restaurant.reviews.each do |review| %>
-<li class="list-group-item">Rating: <%= "⭐️" * review.rating %><br><%= review.content %></li>
-<% end %>
-</ul>
+<div class="reviews">
+      <% @restaurant.reviews.each do |review| %>
+        <div class="review-content">
+        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+          <div class="review-words">
+            <p><%= "⭐️" * review.rating %></p>
+            <p><%= review.content %></p>
+          </div>
+        </div>
+      <% end %>
+</div>
 
-<br><%= link_to "Back to Restaurants List", restaurants_path %>
-
-<br><br><%= link_to "Add a Review", new_restaurant_review_path(@restaurant) %>
-
+<div class="text-center">
+  <button type="button" class="btn btn-outline-primary"> <%= link_to "✍️ Add a Review", new_restaurant_review_path(@restaurant), class: 'btn-title' %></button>
+</div>
+<div class="text-center">
+  <button type="button" class="btn btn-outline-primary"> <%= link_to "👈 Back to Restaurants List", restaurants_path, class: 'btn-title' %></button>
+</div>
